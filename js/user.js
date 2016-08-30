@@ -60,11 +60,33 @@ $("#register-form").validate({
             }
         });
 $(document).ready(function() {
+     if($('#user_session').val() == 1) {
+        $('#section-register').hide();
+        $('.to-register').hide();
+    } else {
+        $('#section-register').show();
+        $('.to-register').show();
+    }
+
+    $('.to-register').click(function(event) {
+        $('#section-login').slideUp().hide(750);
+        $('#section-register').slideUp().show(750);
+        window.location.href = '#section-register';
+    })
+    $('.to-login').click(function(event) {
+        $('#section-register').slideDown().hide(750);
+        $('#section-login').slideDown().show(750);
+        window.location.href = '#section-login';
+    })
     $('#register-form').submit(function(event) {
         event.preventDefault();
 
         $('.form-group').removeClass('has-error');
         $('.help-block').remove();
+
+        var $form = $(this);
+
+        if(! $form.valid()) return false;
 
         $.ajax({
             type        : 'POST',
@@ -117,21 +139,23 @@ $('#login-form').submit(function(event) {
                     if (data.errors) {
                         $('#error-login').fadeIn().show();
                         if (data.errors.pwd) {
-                        $('#error-login').append('<div class="alert alert-danger">' + data.errors.pwd + '</div>');
+                        $('#error-login').append('<div>' + data.errors.pwd + '</div>');
                     }
 
                     if (data.errors.email) {
-                        $('#error-login').append('<div class="alert alert-danger">' + data.errors.email + '</div>');
+                        $('#error-login').append('<div>' + data.errors.email + '</div>');
                     }
                     if (data.errors.act) {
-                        $('#error-login').append('<div class="alert alert-danger">' + data.errors.act + '</div>');
+                        $('#error-login').append('<div>' + data.errors.act + '</div>');
                     }
-
+                    setTimeout(function() {
+                         $('#error-login').fadeOut(1000).hide();
+                    }, 5000 );
                     }
                 } else {
                     $("#message-login").fadeIn().show();
-                    $("#reg-form")[0].reset();
-                    window.location.replace("index.php");
+                    $("#login-form")[0].reset();
+                    window.location.href = "index.php";
                 }
             })
             .fail(function(data) {
@@ -139,6 +163,8 @@ $('#login-form').submit(function(event) {
                 console.log(data);
             });
     });
+
+
 
 function checkAvailability() {
     jQuery.ajax({

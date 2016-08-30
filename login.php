@@ -29,8 +29,8 @@ session_start();
        {
           $table_users = $row['email']; // the first username row is passed on to $table_users, and so on until the query is finished
           $encrypted_password = $row['password']; // the first password row is passed on to $table_password, and so on until the query is finished
-          $username = $row['name'];
-          $uuid= $row['uid'];
+          $username = $row['fname'].' '.$row['lname'];
+          $uuid= $row['uuid'];
           $salt = $row['salt'];
           $activated=$row['activated'];
           $table_password = checkhashSSHA($salt, $password);
@@ -40,7 +40,7 @@ session_start();
               if($encrypted_password == $table_password)
               {
                  $_SESSION['user'] = $username; //set the username in a session. This serves as a global variable
-                 $_SESSION['uid'] = $uuid;
+                 $_SESSION['uuid'] = $uuid;
                  $data['success'] = true;
                 $data['message'] = 'Success!';
               }

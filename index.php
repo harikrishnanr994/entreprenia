@@ -6,7 +6,11 @@ session_start();
 $has_session_user = 0;
 if(isset($_SESSION['user'])) {
     $has_session_user = 1;
-    $uid = $_SESSION['uid'];
+    $uid = $_SESSION['uuid'];
+    $li = '<li><a href="profile.php">Profile</a></li>
+		<li><a href="logout.php">Logout</a></li>';
+} else {
+	$li = '<li><a href="#section-register" class="to-register">Register</a></li>';
 }
 $time = $_SERVER['REQUEST_TIME'];
 $timeout_duration = 1800;
@@ -70,7 +74,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 </head>
 
 <body>
-
+<input type=hidden id="user_session" value="<?=$has_session_user;?>"/>
 <!-- Page Loader
 ========================================================= -->
 <div class="loader-container" id="page-loader"> 
@@ -114,7 +118,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 	        <li><a href="#section-sponsors">Sponsors</a></li>
 	        <li><a href="#section-faq">FAQ</a></li>
 	        <li><a href="#section-prices">Prices</a></li>
-	        <li><a href="#section-register">Register</a></li>
+	        <?=$li;?>
 	      </ul> 
 	    </nav>
 	    <!-- /MAIN MENU -->
@@ -212,7 +216,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 							<!-- countDown -->
 							<div id="countdown" class="row"></div>
 							<!-- /countDown -->			
-							<a href="#section-register" class="btn"><i class="fa fa-paper-plane"></i> &nbsp; register now</a>
+							<a href="#section-register" class="btn to-register"><i class="fa fa-paper-plane"></i> &nbsp; register now</a>
 						</div>
 						<!-- /Main Title -->
 					</div>			
@@ -235,7 +239,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 									<p>Entreprenia is one of its Kind ENTREPRENEURSHIP Summit Held at NSS College of Engineering ,Palakkad ,Kerala. We aim to develop the entrepreneurship spirit and culture in the people in our country by providing a platform for the startups to get nurtured into a company..</p>
 									<!-- Buttons -->
 									<div class="ic-buttons">
-										<a href="#section-register" class="btn"><i class="fa fa-paper-plane"></i> &nbsp; register now</a>
+										<a href="#section-register" class="btn to-register"><i class="fa fa-paper-plane"></i> &nbsp; register now</a>
 									</div>
 									<!-- /Buttons -->
 								</div>
@@ -311,7 +315,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 							<div class="about-text-content">
 								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus. Quisque elementum, ante a maximus commodo, dui metus imperdiet mi, sit amet tempor lectus erat ac orci. Mauris suscipit rhoncus lobortis. Quisque tincidunt nisi libero. Fusce nec turpis quis enim finibus porta. Donec eget sapien ac leo tempor elementum a at ante.</p>
 							</div>							
-							<a href="#section-schedule" class="btn btn-nobg"><i class="fa fa-calendar"></i> See Event Schedule</a> <a href="#section-register" class="btn btn-nobg"><i class="fa fa-paper-plane"></i> Register</a>
+							<a href="#section-schedule" class="btn btn-nobg"><i class="fa fa-calendar"></i> See Event Schedule</a> <a href="#section-register" class="btn btn-nobg to-register"><i class="fa fa-paper-plane"></i> Register</a>
 						</div>
 					</div>
 					<!-- /Right Column -->
@@ -2315,7 +2319,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 									<div class="price-ticket-item-border">
 										<div class="price-ticket-buy">
 											<p class="ticket-item-buy-ico"><i class="fa fa-ticket"></i></p>
-											<h3 class="ticket-item-buy-text">Register Now!</h3>
+											<h3 class="ticket-item-buy-text to-register">Register Now!</h3>
 											<p><i>just 1 click away!</i></p>
 										</div>
 									</div>
@@ -2368,7 +2372,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 									<div class="price-ticket-item-border">
 										<div class="price-ticket-buy">
 											<p class="ticket-item-buy-ico"><i class="fa fa-ticket"></i></p>
-											<h3 class="ticket-item-buy-text">Register Now!</h3>
+											<h3 class="ticket-item-buy-text to-register">Register Now!</h3>
 											<p><i>just 1 click away!</i></p>
 										</div>
 									</div>
@@ -2421,7 +2425,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 									<div class="price-ticket-item-border">
 										<div class="price-ticket-buy">
 											<p class="ticket-item-buy-ico"><i class="fa fa-ticket"></i></p>
-											<h3 class="ticket-item-buy-text">Register Now!</h3>
+											<h3 class="ticket-item-buy-text to-register">Register Now!</h3>
 											<p><i>just 1 click away!</i></p>
 										</div>
 									</div>
@@ -2478,7 +2482,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 									<div class="price-ticket-item-border">
 										<div class="price-ticket-buy">
 											<p class="ticket-item-buy-ico"><i class="fa fa-ticket"></i></p>
-											<h3 class="ticket-item-buy-text">Register Now!</h3>
+											<h3 class="ticket-item-buy-text to-register">Register Now!</h3>
 											<p><i>just 1 click away!</i></p>
 										</div>
 									</div>
@@ -2532,7 +2536,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 									<div class="price-ticket-item-border">
 										<div class="price-ticket-buy">
 											<p class="ticket-item-buy-ico"><i class="fa fa-ticket"></i></p>
-											<h3 class="ticket-item-buy-text">Register Now!</h3>
+											<h3 class="ticket-item-buy-text to-register">Register Now!</h3>
 											<p><i>just 1 click away!</i></p>
 										</div>
 									</div>
@@ -2586,7 +2590,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 									<div class="price-ticket-item-border">
 										<div class="price-ticket-buy">
 											<p class="ticket-item-buy-ico"><i class="fa fa-ticket"></i></p>
-											<h3 class="ticket-item-buy-text">Register Now!</h3>
+											<h3 class="ticket-item-buy-text to-register">Register Now!</h3>
 											<p><i>just 1 click away!</i></p>
 										</div>
 									</div>
@@ -2654,7 +2658,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 						<br>
 						<div class="col-md-6 col-md-offset-3">
 						<label for="subject" >Gender<span>*</span></label>
-                        <label class="radio-inline"><input type="radio" name="gender" value="male" required > Male</label>
+                        <label class="radio-inline"><input type="radio" name="gender" value="male" required checked> Male</label>
                         <label class="radio-inline"><input type="radio" name="gender" value="female" required> Female</label>
 						<br>
                         <label class="radio-inline pull-right"><input type="checkbox" name="acccomodation" value="yes" >
@@ -2665,7 +2669,7 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 							<input id="submit-btn" type="submit" class="btn btn-danger btn-form" name="submit" value="REGISTER"/>
 						</div>
 						<div class="col-md-6 col-md-offset-3">
-							<a href="login.php" class="btn btn-default btn-form ">LOGIN</a>
+							<a href="#section-login" class="btn btn-default btn-form to-login">LOGIN</a>
 						</div>
 						<input type="hidden" value="New Event Register!" name="subject" id="subject">
 					</form>
@@ -2674,6 +2678,47 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 		</div>
 		<!-- /SECTION: Register
 		================================================== -->
+
+		<div class="section-register inverted-section2 section-padding" id="section-login" style="display:none;">
+					<div class="container">
+						<!-- Section title -->
+						<div class="section-title-wrapper">
+							<h2 class="title-section">Login now</h2>
+							
+						</div>				
+						<!-- /Section title -->	
+						<div class="row row-nopr">
+							<div id="message-login" class="alert alert-success col-md-6 col-md-offset-3" style="display:none;">
+			                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			                    <strong>Success!</strong>
+			                </div>
+
+			                <div id="error-login" class="alert alert-danger col-md-6 col-md-offset-3" style="display:none;">
+			                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			                    <strong>Error!</strong>
+			                </div>
+							<form id="login-form" method="post" class="form register-form" >
+
+								
+								<div class="col-md-6 col-md-offset-3">
+									<input name="email" id="lemail" class="form-control" type="email" placeholder="Email" required>
+								</div>
+								
+								<div class="col-md-6 col-md-offset-3">
+									<input name="pwd" id="lpwd" type="password" class="form-control" placeholder="Password" required>
+								</div>
+								<br><br>
+								<div class="col-md-6 col-md-offset-3">
+									<br><input type="submit" class="btn btn-danger btn-form" name="submit" value="LOGIN"/>
+								</div>
+								<div class="col-md-6 col-md-offset-3">
+									<br><a href="#section-register" class="btn btn-default btn-form to-register">REGISTER</a>
+								</div>
+								
+							</form>
+						</div>
+					</div>	
+				</div>
 
 		<!-- SECTION: Location
 		================================================== 
