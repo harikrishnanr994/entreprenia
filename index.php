@@ -2831,7 +2831,7 @@
 				<!-- Section title -->
 				<div class="section-title-wrapper">
 					<h2 class="title-section">Register now</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni doloremque quis a quae voluptas ea suscipit, labore accusamus minima voluptatum repellendus eaque repudiandae optio culpa ullam quia odio, quisquam excepturi.</p>
+					
 				</div>				
 				<!-- /Section title -->	
 				<div class="row row-nopr">
@@ -2873,9 +2873,41 @@
 							<input type="submit" class="btn btn-danger btn-form" name="submit" value="REGISTER"/>
 						</div>
 						<div class="col-md-6 col-md-offset-3">
-							<a href="login.php" class="btn btn-default btn-form ">LOGIN</a>
+							<a href="#section-login" class="btn btn-default btn-form ">LOGIN</a>
 						</div>
 						<input type="hidden" value="New Event Register!" name="subject" id="subject">
+					</form>
+				</div>
+			</div>	
+		</div>
+
+		<div class="section-register inverted-section2 section-padding" id="section-login">
+			<div class="container">
+				<!-- Section title -->
+				<div class="section-title-wrapper">
+					<h2 class="title-section">Login now</h2>
+					
+				</div>				
+				<!-- /Section title -->	
+				<div class="row row-nopr">
+					<form id="register-form" method="post" class="form register-form" >
+
+						
+						<div class="col-md-6 col-md-offset-3">
+							<input name="email" id="lemail" class="form-control" type="email" placeholder="Email" required>
+						</div>
+						
+						<div class="col-md-6 col-md-offset-3">
+							<input name="pwd" id="lpwd" type="password" class="form-control" placeholder="Password" required>
+						</div>
+						<br><br>
+						<div class="col-md-6 col-md-offset-3">
+							<br><input type="submit" class="btn btn-danger btn-form" name="submit" value="LOGIN"/>
+						</div>
+						<div class="col-md-6 col-md-offset-3">
+							<br><a href="#section-register" class="btn btn-default btn-form ">REGISTER</a>
+						</div>
+						
 					</form>
 				</div>
 			</div>	
