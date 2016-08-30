@@ -19,17 +19,7 @@
 
 	<!--=== Blog Comments -->
 	<div class="blog-comments">
-		<h2 class="blog-single-title blog-comments-title">Comments</h2>
-        <!-- Comments Form -->
-        <div class="well">
-            <h4>Leave a Comment:</h4>
-            <form role="form">
-                <div class="form-group">
-                    <textarea class="form-control" rows="3"></textarea>
-                </div>
-                <button type="submit" class="btn btn-1c">Submit</button>
-            </form>
-        </div>
+		<h2 class="blog-single-title blog-comments-title">Rules</h2>
 
         <hr>
         <!-- /Comments Form -->
@@ -38,57 +28,17 @@
 
         <!-- Comment -->
         <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="img/avatar.png" alt="">
-            </a>
             <div class="media-body">
-                <h4 class="media-heading">John Rex
-                    <small>August 25, 2014 at 9:30 PM</small>
+                <h4 class="media-heading">1 . Rule 1
+                    <small>Must be obeyed</small>
                 </h4>
-               Comments? I love comments!
+               
             </div>
         </div>
 		<!-- /Comment -->
 
         <!-- Comment -->
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="img/avatar.png" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">Homer Simpson
-                    <small>August 25, 2014 at 9:30 PM</small>
-                </h4>
-				This blog is amazing! 
-                <!-- Nested Comment -->
-                <div class="media">
-                    <a class="pull-left" href="#">
-                        <img class="media-object" src="img/avatar.png" alt="">
-                    </a>
-                    <div class="media-body">
-                        <h4 class="media-heading">Margie Simpson
-                            <small>August 25, 2014 at 9:30 PM</small>
-                        </h4>
-                        We are totally going to blog about these curiosities!
-                    </div>
-                </div>
-                <!-- End Nested Comment -->
-            </div>
-        </div>
-        <!-- /Comment -->
-
-        <!-- Comment -->
-        <div class="media">
-            <a class="pull-left" href="#">
-                <img class="media-object" src="img/avatar.png" alt="">
-            </a>
-            <div class="media-body">
-                <h4 class="media-heading">Joey Ramone
-                    <small>August 25, 2014 at 9:30 PM</small>
-                </h4>
-             	OMGI love to read it so much!			
-            </div>
-        </div>
+        
 		<!-- /Comment -->
 	</div>
     <!-- === /Blog Comments -->

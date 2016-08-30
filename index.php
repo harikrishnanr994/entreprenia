@@ -191,7 +191,7 @@
 							<!-- countDown -->
 							<div id="countdown" class="row"></div>
 							<!-- /countDown -->			
-							<a href="register" class="btn"><i class="fa fa-paper-plane"></i> &nbsp; register now</a>
+							<a href="#section-register" class="btn"><i class="fa fa-paper-plane"></i> &nbsp; register now</a>
 						</div>
 						<!-- /Main Title -->
 					</div>			
@@ -214,7 +214,7 @@
 									<p>Entreprenia is one of its Kind ENTREPRENEURSHIP Summit Held at NSS College of Engineering ,Palakkad ,Kerala. We aim to develop the entrepreneurship spirit and culture in the people in our country by providing a platform for the startups to get nurtured into a company..</p>
 									<!-- Buttons -->
 									<div class="ic-buttons">
-										<a href="register" class="btn"><i class="fa fa-paper-plane"></i> &nbsp; register now</a>
+										<a href="#section-register" class="btn"><i class="fa fa-paper-plane"></i> &nbsp; register now</a>
 									</div>
 									<!-- /Buttons -->
 								</div>
@@ -2837,40 +2837,42 @@
 				<div class="row row-nopr">
 					<form id="register-form" method="post" class="form register-form" >
 
-						<div class="col-sm-3">
+						<div class="col-md-6 col-md-offset-3">
 							<input name="fname" id="fname" type="text" class="form-control" placeholder="First Name" required>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-md-6 col-md-offset-3">
 							<input name="lname" id="lname" type="text" class="form-control" placeholder="Last Name" required>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-md-6 col-md-offset-3">
 							<input name="email" id="email" class="form-control" type="email" placeholder="Email" required>
 						</div>
-						<div class="col-sm-3">
-							<input name="telephone" id="telephone" class="form-control" type="tel" placeholder="Telephone" required>
-						</div>
-						<div class="col-sm-3">
+						
+						<div class="col-md-6 col-md-offset-3">
 							<input name="pwd" id="pwd" type="password" class="form-control" placeholder="Password" required>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-md-6 col-md-offset-3">
 							<input name="cpwd" id="cpwd" type="password" class="form-control" placeholder="Confirm Password" required>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-md-6 col-md-offset-3" >
+							<input name="phone" id="phone" class="form-control" type="tel" placeholder="Phone" required>
+						</div>
+						<div class="col-md-6 col-md-offset-3">
 							<input name="college" id="college" type="text" class="form-control" placeholder="College" required>
 						</div>
-						<div class="col-sm-3">
+						<br>
+						<div class="col-md-6 col-md-offset-3">
 						<label for="subject" >Gender<span>*</span></label>
                         <label class="radio-inline"><input type="radio" name="gender" value="male" required > Male</label>
                         <label class="radio-inline"><input type="radio" name="gender" value="female" required> Female</label>
 						<br>
-                        <span><input type="checkbox" name="acccomodation" value="yes" ></span>
-                        <label for="subject" >Need Accomodation</label>
+                        <label class="radio-inline pull-right"><input type="checkbox" name="acccomodation" value="yes" >
+                        <label for="subject" >Need Accomodation</label></label>
 						</div>
 						<br>
-						<div class="col-sm-6">
+						<div class="col-md-6 col-md-offset-3">
 							<input type="submit" class="btn btn-danger btn-form" name="submit" value="REGISTER"/>
 						</div>
-						<div class="col-sm-6">
+						<div class="col-md-6 col-md-offset-3">
 							<a href="login.php" class="btn btn-default btn-form ">LOGIN</a>
 						</div>
 						<input type="hidden" value="New Event Register!" name="subject" id="subject">
