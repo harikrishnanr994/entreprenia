@@ -1,3 +1,23 @@
+<?php
+
+require_once("config.php");
+$mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME) or die ("connection failed");
+session_start();
+$has_session_user = 0;
+if(isset($_SESSION['user'])) {
+    $has_session_user = 1;
+    $uid = $_SESSION['uid'];
+}
+$time = $_SERVER['REQUEST_TIME'];
+$timeout_duration = 1800;
+
+if (isset($_SESSION['LAST_ACTIVITY']) && ($time - $_SESSION['LAST_ACTIVITY']) > $timeout_duration) {
+  session_unset();     
+  session_destroy();
+  session_start();    
+}
+$_SESSION['LAST_ACTIVITY'] = $time;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,10 +47,10 @@
 	<!-- Bootstrap styles -->
 	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<!-- /Bootstrap Styles -->
-	<!-- Google Web Fonts -->	
+	<!-- Google Web Fonts 
 	<link href='https://fonts.googleapis.com/css?family=Hind:400,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-	<!-- /google web fonts -->
+	 /google web fonts -->
 	<!-- owl carousel -->
 	<link href="vendor/owl.carousel/owl-carousel/owl.carousel.css" rel="stylesheet">
 	<link href="vendor/owl.carousel/owl-carousel/owl.theme.css" rel="stylesheet">
@@ -44,6 +64,7 @@
 	<!-- Main Styles -->
 	<link href="css/styles.css" rel="stylesheet">
 	<!-- /Main Styles -->
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <!-- >> /CSS
 ============================================================================== -->
 </head>
@@ -315,128 +336,46 @@
 
 
 				<div id="blog-itens-container">
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog1.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">How to succeed in meetings</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
+					<?php
+                            try {
+                                $query = mysqli_query($mysqli, "Select * from events where category='talks'");
 
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog1.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">How to succeed in meetings</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
-
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog3.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">News of the week</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
-
-
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog5.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">Tips to talk in public</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class="btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
+                                while($row = mysqli_fetch_array($query)) {
+                                    echo '<!-- blog-item -->
+										<div class="blog-item">
+											<div class="blog-item-wrapper">
+												<!-- blog item thumbnail -->
+												<div class="blog-item-thumb">
+													<a href="events.php?id='.$row['id'].'" class=""><img src="img/events/'.$row['event_image'].'" alt=""></a>
+												</div>
+												<!-- /blog item thumbnail -->
+												<!-- Blog item - infos -->
+												<div class="blog-item-infos">
+													<!-- blog-item-title -->
+													<div class="blog-item-title-wrapper">
+														<h2 class="blog-item-title title-border"><a href="events.php?id='.$row['id'].'" class="">'.$row['event_name'].'</a></h2>
+													</div>
+													<!-- /blog-item-title -->
+													<!-- blog item - description -->
+													<div class="blog-item-description">
+														<p><a href="events.php?id='.$row['id'].'" class=""></a></p>
+													</div>
+													<!-- /blog-item-description -->
+													<!-- blog item - link -->
+													<div class="blog-item-link">
+														<a href="events.php?id='.$row['id'].'" class=" btn btn-nobg">See More</a>
+													</div>
+													<!-- /blog item - link -->
+												</div>
+												<!-- /blog item - infos -->
+											</div>
+										</div>
+										<!-- /blog-item -->';
+                                    }
+                            } catch(PDOException $e) {
+                                echo $e->getMessage();
+                            }
+                            ?>
 				</div>
 				
 			</div>
@@ -455,99 +394,46 @@
 
 
 				<div id="blog-itens-container1">
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog1.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">How to succeed in meetings</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
+					<?php
+                            try {
+                                $query = mysqli_query($mysqli, "Select * from events where category='competition'");
 
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog3.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">News of the week</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
-
-
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog5.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">Tips to talk in public</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class="btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
+                                while($row = mysqli_fetch_array($query)) {
+                                    echo '<!-- blog-item -->
+										<div class="blog-item">
+											<div class="blog-item-wrapper">
+												<!-- blog item thumbnail -->
+												<div class="blog-item-thumb">
+													<a href="events.php?id='.$row['id'].'" class=""><img src="img/events/'.$row['event_image'].'" alt=""></a>
+												</div>
+												<!-- /blog item thumbnail -->
+												<!-- Blog item - infos -->
+												<div class="blog-item-infos">
+													<!-- blog-item-title -->
+													<div class="blog-item-title-wrapper">
+														<h2 class="blog-item-title title-border"><a href="events.php?id='.$row['id'].'" class="">'.$row['event_name'].'</a></h2>
+													</div>
+													<!-- /blog-item-title -->
+													<!-- blog item - description -->
+													<div class="blog-item-description">
+														<p><a href="events.php?id='.$row['id'].'" class=""></a></p>
+													</div>
+													<!-- /blog-item-description -->
+													<!-- blog item - link -->
+													<div class="blog-item-link">
+														<a href="events.php?id='.$row['id'].'" class=" btn btn-nobg">See More</a>
+													</div>
+													<!-- /blog item - link -->
+												</div>
+												<!-- /blog item - infos -->
+											</div>
+										</div>
+										<!-- /blog-item -->';
+                                    }
+                            } catch(PDOException $e) {
+                                echo $e->getMessage();
+                            }
+                            ?>
 				</div>
 				
 			</div>
@@ -566,99 +452,46 @@
 
 
 				<div id="blog-itens-container2">
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog1.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">How to succeed in meetings</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
+					<?php
+                            try {
+                                $query = mysqli_query($mysqli, "Select * from events where category='workshop'");
 
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog3.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">News of the week</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
-
-
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog5.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">Tips to talk in public</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class="btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
+                                while($row = mysqli_fetch_array($query)) {
+                                    echo '<!-- blog-item -->
+										<div class="blog-item">
+											<div class="blog-item-wrapper">
+												<!-- blog item thumbnail -->
+												<div class="blog-item-thumb">
+													<a href="events.php?id='.$row['id'].'" class=""><img src="img/events/'.$row['event_image'].'" alt=""></a>
+												</div>
+												<!-- /blog item thumbnail -->
+												<!-- Blog item - infos -->
+												<div class="blog-item-infos">
+													<!-- blog-item-title -->
+													<div class="blog-item-title-wrapper">
+														<h2 class="blog-item-title title-border"><a href="events.php?id='.$row['id'].'" class="">'.$row['event_name'].'</a></h2>
+													</div>
+													<!-- /blog-item-title -->
+													<!-- blog item - description -->
+													<div class="blog-item-description">
+														<p><a href="events.php?id='.$row['id'].'" class=""></a></p>
+													</div>
+													<!-- /blog-item-description -->
+													<!-- blog item - link -->
+													<div class="blog-item-link">
+														<a href="events.php?id='.$row['id'].'" class=" btn btn-nobg">See More</a>
+													</div>
+													<!-- /blog item - link -->
+												</div>
+												<!-- /blog item - infos -->
+											</div>
+										</div>
+										<!-- /blog-item -->';
+                                    }
+                            } catch(PDOException $e) {
+                                echo $e->getMessage();
+                            }
+                            ?>
 				</div>
 				
 			</div>
@@ -677,99 +510,47 @@
 
 
 				<div id="blog-itens-container3">
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog1.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">How to succeed in meetings</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
+				<?php
+                            try {
+                                $query = mysqli_query($mysqli, "Select * from events where category='panel'");
 
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog3.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">News of the week</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class=" btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
-
-
-					<!-- blog-item -->
-					<div class="blog-item">
-						<div class="blog-item-wrapper">
-							<!-- blog item thumbnail -->
-							<div class="blog-item-thumb">
-								<a href="events.php" class=""><img src="img/blog5.jpg" alt=""></a>
-							</div>
-							<!-- /blog item thumbnail -->
-							<!-- Blog item - infos -->
-							<div class="blog-item-infos">
-								<!-- blog-item-title -->
-								<div class="blog-item-title-wrapper">
-									<h2 class="blog-item-title title-border"><a href="events.php" class="">Tips to talk in public</a></h2>
-								</div>
-								<!-- /blog-item-title -->
-								<!-- blog item - description -->
-								<div class="blog-item-description">
-									<p><a href="events.php" class="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus sodales varius sagittis. Proin a arcu vitae turpis congue facilisis. Quisque a lectus pretium, sagittis augue in, fringilla risus....</a></p>
-								</div>
-								<!-- /blog-item-description -->
-								<!-- blog item - link -->
-								<div class="blog-item-link">
-									<a href="events.php" class="btn btn-nobg">See More</a>
-								</div>
-								<!-- /blog item - link -->
-							</div>
-							<!-- /blog item - infos -->
-						</div>
-					</div>
-					<!-- /blog-item -->
+                                while($row = mysqli_fetch_array($query)) {
+                                    echo '<!-- blog-item -->
+										<div class="blog-item">
+											<div class="blog-item-wrapper">
+												<!-- blog item thumbnail -->
+												<div class="blog-item-thumb">
+													<a href="events.php?id='.$row['id'].'" class=""><img src="img/events/'.$row['event_image'].'" alt=""></a>
+												</div>
+												<!-- /blog item thumbnail -->
+												<!-- Blog item - infos -->
+												<div class="blog-item-infos">
+													<!-- blog-item-title -->
+													<div class="blog-item-title-wrapper">
+														<h2 class="blog-item-title title-border"><a href="events.php?id='.$row['id'].'" class="">'.$row['event_name'].'</a></h2>
+													</div>
+													<!-- /blog-item-title -->
+													<!-- blog item - description -->
+													<div class="blog-item-description">
+														<p><a href="events.php?id='.$row['id'].'" class=""></a></p>
+													</div>
+													<!-- /blog-item-description -->
+													<!-- blog item - link -->
+													<div class="blog-item-link">
+														<a href="events.php?id='.$row['id'].'" class=" btn btn-nobg">See More</a>
+													</div>
+													<!-- /blog item - link -->
+												</div>
+												<!-- /blog item - infos -->
+											</div>
+										</div>
+										<!-- /blog-item -->';
+                                    }
+                            } catch(PDOException $e) {
+                                echo $e->getMessage();
+                            }
+                            ?>
+					
 				</div>
 				
 			</div>
@@ -2835,7 +2616,16 @@
 				</div>				
 				<!-- /Section title -->	
 				<div class="row row-nopr">
-					<form id="register-form" method="post" class="form register-form" >
+					<div id="message" style="display:none;" class="col-md-6 col-md-offset-3 alert alert-success">
+	                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	                    <strong>Success!</strong> You have been registered successfully with us!. Kindly check your mail to activate your account and ensure your accommodation.
+                	</div>
+
+	                <div id="error" style="display:none;" class="col-md-6 col-md-offset-3 alert alert-danger">
+	                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	                    <strong>Error!</strong>Registration failed!. Try again
+	                </div>
+					<form id="register-form" method="post" class="form register-form" action="action_register.php">
 
 						<div class="col-md-6 col-md-offset-3">
 							<input name="fname" id="fname" type="text" class="form-control" placeholder="First Name" required>
@@ -2844,7 +2634,9 @@
 							<input name="lname" id="lname" type="text" class="form-control" placeholder="Last Name" required>
 						</div>
 						<div class="col-md-6 col-md-offset-3">
-							<input name="email" id="email" class="form-control" type="email" placeholder="Email" required>
+							<input type="email" placeholder="Email" class="form-control" name="email" id="email" required onBlur="checkAvailability()"/>
+						</div>
+						<div class="col-md-6 col-md-offset-3" id="availability-status">
 						</div>
 						
 						<div class="col-md-6 col-md-offset-3">
@@ -2857,7 +2649,7 @@
 							<input name="phone" id="phone" class="form-control" type="tel" placeholder="Phone" required>
 						</div>
 						<div class="col-md-6 col-md-offset-3">
-							<input name="college" id="college" type="text" class="form-control" placeholder="College" required>
+							<input name="college" id="college" type="text" onkeyup="auto()" class="form-control ui-autocomplete-input" autocomplete="off" placeholder="College" required>
 						</div>
 						<br>
 						<div class="col-md-6 col-md-offset-3">
@@ -2870,7 +2662,7 @@
 						</div>
 						<br>
 						<div class="col-md-6 col-md-offset-3">
-							<input type="submit" class="btn btn-danger btn-form" name="submit" value="REGISTER"/>
+							<input id="submit-btn" type="submit" class="btn btn-danger btn-form" name="submit" value="REGISTER"/>
 						</div>
 						<div class="col-md-6 col-md-offset-3">
 							<a href="login.php" class="btn btn-default btn-form ">LOGIN</a>
@@ -2884,14 +2676,14 @@
 		================================================== -->
 
 		<!-- SECTION: Location
-		================================================== -->
+		================================================== 
 		<div class="container-fluid">
 			<div class="row">
 				<div class="map" id="map">			
 					<iframe style="height:100%;width:100%;border:0;" frameborder="0" src="https://www.google.com/maps/embed/v1/place?q=NSS+College+of+Engineering,+Puthuppariyaram,+Palakkad,+Kerala,+India&key=AIzaSyB55Iza4fPjpUBpMU2pV1A1JYfBltGCrbg"></iframe></div><style>#gmap_display .text-marker{max-width:none!important;background:none!important;}img{max-width:none}</style></div></iframe>
 				</div>
 			</div>			
-		</div>
+		</div>-->
 		<!-- /SECTION: Location
 		================================================== -->
 	</div>
@@ -2953,7 +2745,8 @@
 
 <!-- >> JS
 ============================================================================== -->
-
+<script src="vendor/jquery.ui.autocomplete.html.js" />
+<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="vendor/jquery-1.11.3.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -2979,6 +2772,10 @@
 <!-- Main JS -->
 <script src="js/main.js"></script>
 <!-- /Main JS -->
+<!-- User JS -->
+<script src="js/user.js"></script>
+<!-- /User JS -->
+
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

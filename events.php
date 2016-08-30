@@ -1,19 +1,29 @@
-<!-- Blog Posts -->
-<div class="blog-single-post">
+<?php
+
+include("config.php");
+$mysqli = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME) or die ("connection failed");
+$event = $_GET['id'];
+
+try {
+    $query = mysqli_query($mysqli, "Select * from events where id='$event'");
+
+    while($row = mysqli_fetch_array($query)) {
+        echo '<!-- Blog Posts -->
+	<div class="blog-single-post">
 	<!-- post image -->
 	<div class="post-header-image">
-		<img src="img/blog3.jpg" alt="">
+		<img src="img/events/'.$row['event_image'].'" alt="">
 	</div>										
 	<!-- /post-image -->	
 
 	<!-- post title -->
-	<h2 class="blog-single-title">10 tips for a dream house</h2>
+	<h2 class="blog-single-title">'.$row['event_name'].'</h2>
 	<!-- /post title -->
 										
 	<!-- post content -->
 	<div class="blog-single-content">
-		<p>At its inception, the bouquet formed part of the wreaths and garlands worn by both the bride and groom. It was considered a symbol of happiness. Originally bridal wreaths and bouquets were made of herbs, which had magical and meaningful definitions for the couple's future life. Traditional Celtic bouquets included ivy, thistle and heather.</p>
-		<p> Ancient uses included herbs, not flowers, in bouquets because they felt herbs -- especially garlic -- had the power to cast off evil spirits (can you imagine walking up the aisle holding a clump of garlic!?). If a bride carried sage (the herb of wisdom) she became wise; if she carried dill (the herb of lust) she became lusty. Flower girls carried sheaves of wheat, a symbol of growth, fertility, and renewal. Later, flowers replaced herbs and took on meanings all their own. Orange blossoms, for example, mean happiness and fertility. Ivy means fidelity; lilies mean purity.</p>
+		<p>'.$row['details'].'</p>
+		
 	</div>
 	<!-- /post content -->
 
@@ -43,4 +53,11 @@
 	</div>
     <!-- === /Blog Comments -->
 </div>			
-<!-- /Blog Posts -->	
+<!-- /Blog Posts -->';
+    }
+    	} catch(PDOException $e) {
+            echo $e->getMessage();
+    }
+
+?>
+	
