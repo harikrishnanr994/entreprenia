@@ -2720,7 +2720,6 @@ $_SESSION['LAST_ACTIVITY'] = $time;
 					</div>	
 				</div>
 
-
 <div class="section-register inverted-section2 section-padding" id="section-iedc">
 			<div class="container">
 				<!-- Section title -->
